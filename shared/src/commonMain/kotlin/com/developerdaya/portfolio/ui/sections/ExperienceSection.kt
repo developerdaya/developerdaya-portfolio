@@ -49,7 +49,7 @@ fun ExperienceSection(modifier: Modifier = Modifier) {
     ) {
         SectionHeader(
             title = "Experience",
-            subtitle = "My professional journey"
+            subtitle = null
         )
 
         Spacer(Modifier.height(spacing.large))
@@ -61,7 +61,7 @@ fun ExperienceSection(modifier: Modifier = Modifier) {
             )
         }
 
-        Spacer(Modifier.height(spacing.large))
+        Spacer(Modifier.height(spacing.compact))
 
         Text(
             text = "Technical Skills",

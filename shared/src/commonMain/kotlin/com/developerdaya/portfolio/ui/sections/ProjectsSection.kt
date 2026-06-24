@@ -63,7 +63,7 @@ fun ProjectsSection(modifier: Modifier = Modifier, onOpenUrl: (String) -> Unit =
     ) {
         SectionHeader(
             title = "Projects",
-            subtitle = "Apps and features I've built"
+            subtitle = null
         )
 
         Spacer(Modifier.height(spacing.large))

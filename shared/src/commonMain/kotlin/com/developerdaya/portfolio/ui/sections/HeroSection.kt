@@ -128,7 +128,7 @@ fun HeroSection(
                 textAlign = TextAlign.Center
             )
 
-            Spacer(Modifier.height(spacing.large))
+            // Reduced bottom padding by removing bottom spacer
         }
     }
 }
