@@ -137,6 +137,8 @@ private fun ProjectCard(
                         "manthan_radio_logo" -> painterResource(Res.drawable.manthan_radio_logo)
                         "buddy_talk_logo" -> painterResource(Res.drawable.buddy_talk_logo)
                         "koyal_fm_logo" -> painterResource(Res.drawable.koyal_fm_logo)
+                        "goochil_logo" -> painterResource(Res.drawable.goochil_logo)
+                        "edugorilla_logo" -> painterResource(Res.drawable.edugorilla_logo)
                         else -> null
                     }
 
@@ -200,6 +202,8 @@ private fun ProjectCard(
                 "manthan_radio" -> painterResource(Res.drawable.manthan_radio)
                 "buddy_talk" -> painterResource(Res.drawable.buddy_talk)
                 "koyal_fm" -> painterResource(Res.drawable.koyal_fm)
+                "goochil" -> painterResource(Res.drawable.goochil)
+                "edugorilla" -> painterResource(Res.drawable.edugorilla)
                 else -> null
             }
 

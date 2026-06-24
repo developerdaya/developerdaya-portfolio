@@ -151,7 +151,10 @@ object PortfolioData {
                 "Led the development of Goochil User, a comprehensive taxi booking app.",
                 "The app features a user-friendly interface that ensures effortless navigation."
             ),
-            techStack = listOf("MVVM", "Live Tracking", "Google Map", "Firebase Realtime Database")
+            techStack = listOf("MVVM", "Live Tracking", "Google Map", "Firebase Realtime Database"),
+            screenshotResName = "goochil",
+            iconResName = "goochil_logo",
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.fluper.multitaxibooking"
         ),
         Project(
             title = "EduGorilla",
@@ -160,7 +163,10 @@ object PortfolioData {
                 "Worked on EduGorilla white-label apps for mock tests, PDF learning, and live classes.",
                 "Delivered crash fixes, performance improvements, and client-driven features."
             ),
-            techStack = listOf("REST APIs", "Firebase Notifications", "Zoom SDK")
+            techStack = listOf("REST APIs", "Firebase Notifications", "Zoom SDK"),
+            screenshotResName = "edugorilla",
+            iconResName = "edugorilla_logo",
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.testseries.edugorilla"
         )
     )
 
