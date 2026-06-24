@@ -53,7 +53,7 @@ object PortfolioData {
     val yearsOfExperience = "5+"
 
     val aboutSummary = "Android developer passionate about building delightful mobile experiences."
-
+    val heroTagline = "Building delightful Android experiences with modern tech"
     val aboutStats = listOf(
         Pair("5+", "Years Experience")
     )

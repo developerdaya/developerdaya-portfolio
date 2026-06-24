@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.developerdaya.portfolio.ui.sections.AboutSection
-import com.developerdaya.portfolio.ui.sections.CertificationsSection
-import com.developerdaya.portfolio.ui.sections.ContactSection
+
+
 import com.developerdaya.portfolio.ui.sections.EducationSection
 import com.developerdaya.portfolio.ui.sections.ExperienceSection
-import com.developerdaya.portfolio.ui.sections.FooterSection
+
 import com.developerdaya.portfolio.ui.sections.HeroSection
 import com.developerdaya.portfolio.ui.sections.ProjectsSection
 import com.developerdaya.portfolio.ui.sections.SkillsSection
@@ -35,9 +35,7 @@ import kotlinx.coroutines.launch
  */
 @Composable
 fun PortfolioScreen(
-    onEmailClick: () -> Unit = {},
-    onOpenUrl: (String) -> Unit = {},
-    onPhoneClick: () -> Unit = {}
+    onOpenUrl: (String) -> Unit = {}
 ) {
     val colors = PortfolioTheme.colors
     val listState = rememberLazyListState()
@@ -84,19 +82,6 @@ fun PortfolioScreen(
         // 6. Education
         item { EducationSection() }
 
-        // 7. Certifications
-        item { CertificationsSection(onOpenUrl = onOpenUrl) }
 
-        // 8. Contact
-        item {
-            ContactSection(
-                onEmailClick = onEmailClick,
-                onOpenUrl = onOpenUrl,
-                onPhoneClick = onPhoneClick
-            )
-        }
-
-        // 9. Footer
-        item { FooterSection() }
     }
 }

@@ -12,15 +12,7 @@ fun App() {
     MaterialTheme {
         val uriHandler = LocalUriHandler.current
         PortfolioScreen(
-            onEmailClick = {
-
-            },
-            onOpenUrl = {
-                uriHandler.openUri(it)
-            },
-            onPhoneClick = {
-
-            }
+            onOpenUrl = { uriHandler.openUri(it) }
         )
     }
 }

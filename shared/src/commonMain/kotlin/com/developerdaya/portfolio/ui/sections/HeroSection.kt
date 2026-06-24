@@ -166,29 +166,7 @@ fun HeroSection(
             Spacer(Modifier.height(spacing.medium))
 
             // Availability badge
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(50.dp))
-                    .background(Color(0xFF0D2E1F))
-                    .padding(horizontal = 12.dp, vertical = 5.dp)
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp)
-                ) {
-                    Box(
-                        Modifier
-                            .size(6.dp)
-                            .background(Color(0xFF22C55E), RoundedCornerShape(50.dp))
-                    )
-                    Text(
-                        text = "Open to opportunities",
-                        color = Color(0xFF4ADE80),
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
-            }
+
 
             Spacer(Modifier.height(spacing.large))
 
@@ -221,49 +199,11 @@ fun HeroSection(
             Spacer(Modifier.height(spacing.xlarge))
 
             // Quick Stats
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                PortfolioData.aboutStats.forEach { (value, label) ->
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(
-                            text = value,
-                            color = colors.primary,
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Black
-                        )
-                        Text(
-                            text = label,
-                            color = Color(0xFF8B9CBF),
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                    }
-                }
-            }
+
 
             Spacer(Modifier.height(spacing.section))
 
-            // Scroll indicator
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.offset(y = arrowOffset.dp)
-            ) {
-                Text(
-                    text = "Scroll to explore",
-                    color = Color(0xFF4A5568),
-                    fontSize = 11.sp,
-                    letterSpacing = 1.sp
-                )
-                Spacer(Modifier.height(4.dp))
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowDown,
-                    contentDescription = "Scroll down",
-                    tint = Color(0xFF4A5568),
-                    modifier = Modifier.size(20.dp)
-                )
-            }
+
         }
     }
 }

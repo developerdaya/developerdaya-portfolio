@@ -52,7 +52,7 @@ fun FooterSection(modifier: Modifier = Modifier) {
 
         Spacer(Modifier.height(spacing.medium))
 
-        TechBadge(text = "Built with Jetpack Compose")
+
 
         Spacer(Modifier.height(spacing.large))
 
@@ -68,7 +68,7 @@ fun FooterSection(modifier: Modifier = Modifier) {
         )
         Spacer(Modifier.height(4.dp))
         Text(
-            text = "Designed & Developed in Mumbai",
+            text = "Built with Jetpack Compose",
             style = MaterialTheme.typography.labelSmall,
             color = colors.textSecondary.copy(alpha = 0.6f),
             textAlign = TextAlign.Center

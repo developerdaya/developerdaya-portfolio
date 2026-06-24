@@ -19,6 +19,7 @@ import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Message
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -41,6 +42,12 @@ fun ContactSection(
     modifier: Modifier = Modifier,
     onOpenUrl: (String) -> Unit = {}
 ) {
+    val aboutSummary = "Android developer passionate about building delightful mobile experiences."
+    val heroTagline = "Building delightful Android experiences with modern tech"
+
+    val aboutStats = listOf(
+        Pair("5+", "Years Experience")
+    )
     val colors = PortfolioTheme.colors
     val spacing = PortfolioTheme.spacing
 
@@ -134,6 +141,16 @@ fun ContactSection(
                 label = "Phone",
                 value = PortfolioData.phone,
                 onClick = { onOpenUrl("tel:${PortfolioData.phone}") }
+            )
+            ContactRow(
+                icon = Icons.Default.Message,
+                label = "WhatsApp",
+                value = PortfolioData.whatsappNumber,
+                onClick = {
+                    val number = PortfolioData.whatsappNumber.replace("+", "")
+                    val msg = java.net.URLEncoder.encode(PortfolioData.whatsappMessage, "UTF-8")
+                    onOpenUrl("https://wa.me/${number}?text=${msg}")
+                }
             )
         }
     }
