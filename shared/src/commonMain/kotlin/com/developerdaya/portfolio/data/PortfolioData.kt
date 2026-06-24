@@ -117,10 +117,11 @@ object PortfolioData {
             ),
             techStack = listOf("MVVM", "REST APIs", "MotionLayout", "Background Services", "Google Login", "Lottie"),
             screenshotResName = "manthan_radio",
-            iconResName = "manthan_radio_logo"
+            iconResName = "manthan_radio_logo",
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.developerdaya.manthan.radio"
         ),
         Project(
-            title = "Buddy Talk",
+            title = "Deep Talk",
             description = "Random voice calling app to connect like-minded people worldwide.",
             bullets = listOf(
                 "Created a random voice calling app to connect like-minded people worldwide.",
@@ -128,7 +129,8 @@ object PortfolioData {
             ),
             techStack = listOf("Agora Voice SDK", "Firebase Realtime db", "Background Microphone Services"),
             screenshotResName = "buddy_talk",
-            iconResName = "buddy_talk_logo"
+            iconResName = "buddy_talk_logo",
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.developerdaya.deeptalk"
         ),
         Project(
             title = "Koyal FM",
@@ -139,7 +141,8 @@ object PortfolioData {
             ),
             techStack = listOf("MotionLayout", "Background Music Service", "MediaStyle Notification", "Lottie"),
             screenshotResName = "koyal_fm",
-            iconResName = "koyal_fm_logo"
+            iconResName = "koyal_fm_logo",
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.koyalfm.koyalfmapp"
         ),
         Project(
             title = "Goochil User",

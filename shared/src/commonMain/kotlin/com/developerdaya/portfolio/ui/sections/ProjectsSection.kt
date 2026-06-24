@@ -151,7 +151,7 @@ private fun ProjectCard(
                         val icon = when (project.title.lowercase()) {
                             "live echo mic" -> Icons.Default.Mic
                             "manthan radio" -> Icons.Default.Radio
-                            "buddy talk" -> Icons.Default.Call
+                            "deep talk" -> Icons.Default.Call
                             "koyal fm" -> Icons.Default.MusicNote
                             "goochil user" -> Icons.Default.LocalTaxi
                             "edugorilla" -> Icons.Default.School
