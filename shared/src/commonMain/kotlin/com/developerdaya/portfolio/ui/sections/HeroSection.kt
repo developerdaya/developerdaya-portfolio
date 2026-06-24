@@ -63,44 +63,7 @@ fun HeroSection(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF0A0E1A),
-                        Color(0xFF0F1629),
-                        Color(0xFF111827)
-                    )
-                )
-            )
-            // Decorative grid pattern drawn on canvas
-            .drawBehind {
-                val gridColor = Color(0xFF1A2235)
-                val spacing = 40f
-                var x = 0f
-                while (x < size.width) {
-                    drawLine(gridColor, Offset(x, 0f), Offset(x, size.height), 0.5f)
-                    x += spacing
-                }
-                var y = 0f
-                while (y < size.height) {
-                    drawLine(gridColor, Offset(0f, y), Offset(size.width, y), 0.5f)
-                    y += spacing
-                }
-
-                // Glow circle
-                drawCircle(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            Color(0x3000D4AA),
-                            Color.Transparent
-                        ),
-                        center = Offset(size.width * 0.7f, size.height * 0.3f),
-                        radius = 400f
-                    ),
-                    radius = 400f,
-                    center = Offset(size.width * 0.7f, size.height * 0.3f)
-                )
-            }
+            .background(colors.heroBackground)
             .padding(horizontal = spacing.screenHorizontal)
             .padding(top = 14.dp, bottom = spacing.sectionBottom)
     ) {
@@ -112,7 +75,7 @@ fun HeroSection(
             Text(
                 text = PortfolioData.name,
                 style = MaterialTheme.typography.headlineLarge.copy(fontSize = 32.sp),
-                color = Color.White,
+                color = colors.textPrimary,
                 fontWeight = FontWeight.Black,
                 textAlign = TextAlign.Center
             )

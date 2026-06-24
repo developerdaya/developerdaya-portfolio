@@ -89,16 +89,6 @@ private fun ProjectCard(
     val colors = PortfolioTheme.colors
     val spacing = PortfolioTheme.spacing
 
-    // Alternate gradient accent for variety
-    val accentColors = listOf(
-        Pair(colors.accentGradientStart, colors.accentGradientEnd),
-        Pair(colors.secondary, colors.accentGradientStart),
-        Pair(colors.accent, colors.secondary),
-        Pair(colors.accentGradientEnd, colors.accent),
-        Pair(colors.accentGradientStart, colors.accent)
-    )
-    val (gradStart, gradEnd) = accentColors[index % accentColors.size]
-
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -106,14 +96,12 @@ private fun ProjectCard(
             .background(colors.cardBackground)
             .border(1.dp, colors.border, RoundedCornerShape(16.dp))
     ) {
-        // Gradient accent bar at top
+        // Accent bar at top
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(3.dp)
-                .background(
-                    brush = Brush.horizontalGradient(listOf(gradStart, gradEnd))
-                )
+                .background(colors.primary)
         )
 
         Column(modifier = Modifier.padding(spacing.cardPadding)) {
@@ -250,7 +238,7 @@ private fun ProjectCard(
                                     .padding(top = 6.dp)
                                     .size(5.dp)
                                     .background(
-                                        brush = Brush.radialGradient(listOf(gradStart, gradEnd)),
+                                        color = colors.primary,
                                         shape = CircleShape
                                     )
                             )

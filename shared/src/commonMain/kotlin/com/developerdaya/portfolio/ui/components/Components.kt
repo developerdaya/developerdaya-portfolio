@@ -108,9 +108,7 @@ fun SectionHeader(
                     .width(4.dp)
                     .height(28.dp)
                     .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(colors.accentGradientStart, colors.accentGradientEnd)
-                        ),
+                        color = colors.primary,
                         shape = RoundedCornerShape(2.dp)
                     )
             )
@@ -152,9 +150,9 @@ fun SkillChip(
             colors.border
         )
         ChipVariant.Accent -> Triple(
-            colors.accentGradientStart.copy(alpha = 0.15f),
-            colors.accentGradientStart,
-            colors.accentGradientStart.copy(alpha = 0.3f)
+            colors.primary.copy(alpha = 0.15f),
+            colors.primary,
+            colors.primary.copy(alpha = 0.3f)
         )
     }
 
@@ -219,11 +217,7 @@ fun GradientButton(
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(
-                brush = Brush.horizontalGradient(
-                    colors = listOf(colors.accentGradientStart, colors.accentGradientEnd)
-                )
-            )
+            .background(colors.primary)
             .clickable(onClick = onClick)
             .padding(horizontal = 20.dp, vertical = 12.dp),
         contentAlignment = Alignment.Center

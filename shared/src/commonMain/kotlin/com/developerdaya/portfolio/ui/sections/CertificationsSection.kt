@@ -59,9 +59,7 @@ fun CertificationsSection(
                     .background(colors.cardBackground)
                     .border(
                         1.dp,
-                        Brush.horizontalGradient(
-                            listOf(colors.accentGradientStart, colors.accentGradientEnd)
-                        ),
+                        colors.border,
                         RoundedCornerShape(12.dp)
                     )
                     .padding(spacing.medium),

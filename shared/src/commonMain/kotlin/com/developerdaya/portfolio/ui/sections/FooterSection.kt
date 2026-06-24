@@ -29,11 +29,7 @@ fun FooterSection(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(
-                brush = Brush.verticalGradient(
-                    listOf(colors.cardBackground, Color(0xFF0A0E1A))
-                )
-            )
+            .background(colors.background)
             .padding(horizontal = spacing.screenHorizontal)
             .padding(vertical = spacing.xlarge),
         horizontalAlignment = Alignment.CenterHorizontally

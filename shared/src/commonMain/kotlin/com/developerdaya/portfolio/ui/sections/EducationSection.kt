@@ -54,11 +54,7 @@ fun EducationSection(modifier: Modifier = Modifier) {
                         modifier = Modifier
                             .size(44.dp)
                             .clip(RoundedCornerShape(10.dp))
-                            .background(
-                                brush = Brush.linearGradient(
-                                    listOf(colors.accentGradientStart, colors.accentGradientEnd)
-                                )
-                            ),
+                            .background(colors.primary),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(

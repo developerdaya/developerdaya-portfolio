@@ -105,9 +105,7 @@ private fun TimelineItem(
                 modifier = Modifier
                     .size(14.dp)
                     .background(
-                        brush = Brush.radialGradient(
-                            colors = listOf(colors.primary, colors.accentGradientEnd)
-                        ),
+                        color = colors.timelineDot,
                         shape = CircleShape
                     )
                     .border(2.dp, colors.background, CircleShape)
@@ -120,11 +118,7 @@ private fun TimelineItem(
                         .width(2.dp)
                         .fillMaxHeight()
                         .padding(bottom = spacing.xlarge)
-                        .background(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(colors.timelineLine, colors.border)
-                            )
-                        )
+                        .background(colors.timelineLine)
                 )
             }
         }

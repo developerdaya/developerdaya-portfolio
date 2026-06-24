@@ -70,19 +70,10 @@ fun ContactSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(20.dp))
-                .background(
-                    brush = Brush.linearGradient(
-                        listOf(
-                            colors.accentGradientStart.copy(0.1f),
-                            colors.accentGradientEnd.copy(0.1f)
-                        )
-                    )
-                )
+                .background(colors.alternateBackground)
                 .border(
                     width = 1.dp,
-                    brush = Brush.horizontalGradient(
-                        listOf(colors.accentGradientStart, colors.accentGradientEnd)
-                    ),
+                    color = colors.border,
                     shape = RoundedCornerShape(20.dp)
                 )
                 .padding(spacing.large),
