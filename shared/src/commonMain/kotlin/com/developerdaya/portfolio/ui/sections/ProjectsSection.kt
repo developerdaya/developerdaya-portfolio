@@ -1,5 +1,7 @@
 package com.developerdaya.portfolio.ui.sections
 
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,7 +19,15 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Laptop
+import androidx.compose.material.icons.filled.LocalTaxi
+import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.OpenInNew
+import androidx.compose.material.icons.filled.Radio
+import androidx.compose.material.icons.filled.School
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,6 +36,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,9 +48,12 @@ import com.developerdaya.portfolio.ui.components.ChipVariant
 import com.developerdaya.portfolio.ui.components.SectionHeader
 import com.developerdaya.portfolio.ui.components.SkillChip
 import com.developerdaya.portfolio.ui.theme.PortfolioTheme
+import org.jetbrains.compose.resources.painterResource
+import portfolio.shared.generated.resources.Res
+import portfolio.shared.generated.resources.live_echo
 
 @Composable
-fun ProjectsSection(modifier: Modifier = Modifier , onOpenUrl : (String) -> Unit = {}) {
+fun ProjectsSection(modifier: Modifier = Modifier, onOpenUrl: (String) -> Unit = {}) {
     val colors = PortfolioTheme.colors
     val spacing = PortfolioTheme.spacing
 
@@ -70,7 +86,7 @@ private fun ProjectCard(
     project: Project,
     index: Int,
     modifier: Modifier = Modifier,
-    onOpenUrl : (String) -> Unit = {}
+    onOpenUrl: (String) -> Unit = {}
 ) {
     val colors = PortfolioTheme.colors
     val spacing = PortfolioTheme.spacing
@@ -103,54 +119,123 @@ private fun ProjectCard(
         )
 
         Column(modifier = Modifier.padding(spacing.cardPadding)) {
-            // Title row
+            // 1. Icon & Name Row (Icon + Name & Play Button)
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Top
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = project.title,
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = colors.textPrimary,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        text = project.description,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = colors.textSecondary
+                // App Icon Box
+                Box(
+                    modifier = Modifier
+                        .size(56.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(Color(0xFF1E1E1E))
+                        .border(1.dp, Color(0xFF333333), RoundedCornerShape(12.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    val icon = when (project.title.lowercase()) {
+                        "live echo mic" -> Icons.Default.Mic
+                        "manthan radio" -> Icons.Default.Radio
+                        "deep talk" -> Icons.Default.Call
+                        "koyal fm" -> Icons.Default.MusicNote
+                        "goochil user" -> Icons.Default.LocalTaxi
+                        "edugorilla" -> Icons.Default.School
+                        else -> Icons.Default.Laptop
+                    }
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = "Project Icon",
+                        tint = colors.primary,
+                        modifier = Modifier.size(32.dp)
                     )
                 }
 
-                if (project.playStoreUrl != null) {
-                    Spacer(Modifier.width(spacing.small))
+                // Name, Subtext & Google Play Button
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = project.title,
+                        style = MaterialTheme.typography.titleLarge,
+                        color = colors.textPrimary,
+                        fontWeight = FontWeight.Bold
+                    )
+                    
+                    if (project.downloads != null) {
+                        Spacer(Modifier.height(2.dp))
+                        Text(
+                            text = "${project.downloads} Downloads",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = colors.textSecondary,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
+
+                    if (project.playStoreUrl != null) {
+                        Spacer(Modifier.height(6.dp))
+                        GooglePlayButton(onClick = { onOpenUrl(project.playStoreUrl) })
+                    }
+                }
+            }
+
+            Spacer(Modifier.height(spacing.medium))
+
+            // 2. Screenshot & Bullet Points Row
+            val screenshotPainter = when (project.screenshotResName) {
+                "live_echo" -> painterResource(Res.drawable.live_echo)
+                else -> null
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                if (screenshotPainter != null) {
+                    // Screenshot with a nice dark phone bezel border
                     Box(
                         modifier = Modifier
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(colors.chipBackground)
-                            .border(1.dp, colors.chipBorder, RoundedCornerShape(8.dp))
-                            .padding(8.dp)
-                            .clickable{
-                                onOpenUrl(project.playStoreUrl)
-                            }
+                            .width(110.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(Color.Black)
+                            .border(3.dp, Color(0xFF1E1E1E), RoundedCornerShape(12.dp))
                     ) {
+                        Image(
+                            painter = screenshotPainter,
+                            contentDescription = "${project.title} Screenshot",
+                            modifier = Modifier.fillMaxWidth(),
+                            contentScale = ContentScale.FillWidth
+                        )
+                    }
+                }
+
+                // Description & Bullets Column
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = project.description,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = colors.textPrimary,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+
+                    project.bullets.forEach { bullet ->
                         Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            modifier = Modifier.padding(bottom = 6.dp),
+                            verticalAlignment = Alignment.Top,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.OpenInNew,
-                                contentDescription = "Play Store",
-                                tint = colors.primary,
-                                modifier = Modifier.size(14.dp)
+                            Box(
+                                modifier = Modifier
+                                    .padding(top = 6.dp)
+                                    .size(5.dp)
+                                    .background(
+                                        brush = Brush.radialGradient(listOf(gradStart, gradEnd)),
+                                        shape = CircleShape
+                                    )
                             )
                             Text(
-                                text = "Link",
-                                color = colors.primary,
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.SemiBold
+                                text = bullet,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = colors.textSecondary
                             )
                         }
                     }
@@ -159,41 +244,93 @@ private fun ProjectCard(
 
             Spacer(Modifier.height(spacing.medium))
 
-            // Bullet highlights
-            project.bullets.forEach { bullet ->
-                Row(
-                    modifier = Modifier.padding(bottom = 5.dp),
-                    verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .padding(top = 7.dp)
-                            .size(4.dp)
-                            .background(
-                                brush = Brush.radialGradient(listOf(gradStart, gradEnd)),
-                                shape = CircleShape
-                            )
-                    )
-                    Text(
-                        text = bullet,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = colors.textSecondary
-                    )
-                }
-            }
-
-            Spacer(Modifier.height(spacing.medium))
-
-            // Tech stack chips
+            // 3. Tech Stack Chips at Bottom
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
-                verticalArrangement = Arrangement.spacedBy(spacing.small)
+                verticalArrangement = Arrangement.spacedBy(spacing.small),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 project.techStack.forEach { tech ->
                     SkillChip(text = tech, variant = ChipVariant.Default)
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun GooglePlayButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .clip(RoundedCornerShape(6.dp))
+            .background(Color.Black)
+            .border(1.dp, Color(0xFF333333), RoundedCornerShape(6.dp))
+            .clickable { onClick() }
+            .padding(horizontal = 10.dp, vertical = 5.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(6.dp)
+    ) {
+        // Draw custom Google Play triangle logo
+        Canvas(modifier = Modifier.size(14.dp)) {
+            val w = size.width
+            val h = size.height
+
+            // 1. Blue part (left triangle pointing right)
+            val bluePath = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(w * 0.55f, h * 0.5f)
+                lineTo(0f, h)
+                close()
+            }
+            drawPath(bluePath, color = Color(0xFF00C6FF))
+
+            // 2. Green part (bottom-right triangle)
+            val greenPath = Path().apply {
+                moveTo(0f, h)
+                lineTo(w * 0.55f, h * 0.5f)
+                lineTo(w * 0.8f, h * 0.75f)
+                close()
+            }
+            drawPath(greenPath, color = Color(0xFF00E175))
+
+            // 3. Yellow part (right triangle pointing left)
+            val yellowPath = Path().apply {
+                moveTo(w * 0.8f, h * 0.75f)
+                lineTo(w * 0.55f, h * 0.5f)
+                lineTo(w * 0.8f, h * 0.25f)
+                lineTo(w, h * 0.5f)
+                close()
+            }
+            drawPath(yellowPath, color = Color(0xFFFFD300))
+
+            // 4. Red part (top-right triangle)
+            val redPath = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(w * 0.55f, h * 0.5f)
+                lineTo(w * 0.8f, h * 0.25f)
+                close()
+            }
+            drawPath(redPath, color = Color(0xFFFF3A44))
+        }
+
+        Column(verticalArrangement = Arrangement.Center) {
+            Text(
+                text = "GET IT ON",
+                color = Color.White,
+                fontSize = 6.sp,
+                fontWeight = FontWeight.Normal,
+                letterSpacing = 0.5.sp
+            )
+            Text(
+                text = "Google Play",
+                color = Color.White,
+                fontSize = 10.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 0.2.sp
+            )
         }
     }
 }

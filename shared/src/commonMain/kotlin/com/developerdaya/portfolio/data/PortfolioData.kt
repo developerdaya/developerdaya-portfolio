@@ -17,7 +17,9 @@ data class Project(
     val description: String,
     val bullets: List<String>,
     val techStack: List<String>,
-    val playStoreUrl: String? = null
+    val playStoreUrl: String? = null,
+    val downloads: String? = null,
+    val screenshotResName: String? = null
 )
 
 data class Education(
@@ -61,18 +63,10 @@ object PortfolioData {
     val skills = emptyList<String>()
 
     val skillCategories = listOf(
-        Pair("Core Android", listOf("Android SDK", "Jetpack Components", "Custom Views", "Advanced UI Design")),
-        Pair("Programming", listOf("Kotlin", "Coroutines", "OOP Programming", "Extension & Higher-Order Functions")),
-        Pair("Architectures", listOf("MVVM", "Clean Architecture", "SOLID Principles", "Dependency Injection (Hilt)")),
-        Pair("UI/UX", listOf("Material Design", "MotionLayout", "Animations", "ViewBinding", "DataBinding")),
-        Pair("State & Data", listOf("LiveData", "Flow/StateFlow/SharedFlow", "Room Database", "Paging Library")),
-        Pair("Networking", listOf("REST API", "Retrofit", "OkHttp", "Interceptors", "Logging", "Caching")),
-        Pair("Multimedia", listOf("ExoPlayer", "MediaRecorder", "CameraX", "Audio/Video Handling")),
-        Pair("Security", listOf("Proguard", "Secure Storage", "EncryptedSharedPreferences", "Data Encryption")),
-        Pair("Performance", listOf("ANR Handling", "Memory Leak Prevention", "LeakCanary", "App Startup Optimization")),
-        Pair("Developer Tools", listOf("Git", "Gitlab", "CI/CD", "Code Review", "Debugging", "Crash Analysis")),
-        Pair("Backend", listOf("Kotlin Spring Boot", "REST API Development", "AWS Server Deployment")),
-        Pair("Soft Skills", listOf("Creativity", "Curiosity", "Self-Motivated", "Solution Oriented", "Leadership"))
+        Pair("Languages", listOf("Kotlin", "Java")),
+        Pair("Android", listOf("Android", "Compose", "MVVM", "Clean Architecture", "Hilt", "Coroutines")),
+        Pair("Libraries & Tools", listOf("Retrofit", "Room", "Firebase", "Paging3", "ExoPlayer")),
+        Pair("Backend & DevOps", listOf("Springboot", "AWS", "Git", "Gitlab", "CI/CD"))
     )
 
     val experiences = listOf(
@@ -107,7 +101,10 @@ object PortfolioData {
                 "Built Live Echo Voice Effect, a real-time echo machine for live singing.",
                 "Enabled live singing with real-time echo & reverb control for smooth audio experience."
             ),
-            techStack = listOf("Google Oboe", "Native C++", "Background services", "In-App Purchases", "Razorpay")
+            techStack = listOf("Google Oboe", "Native C++", "Background services", "In-App Purchases", "Razorpay"),
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.liveechomic",
+            downloads = "100K+",
+            screenshotResName = "live_echo"
         ),
         Project(
             title = "Manthan Radio",

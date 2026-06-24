@@ -148,7 +148,7 @@ fun ContactSection(
                 value = PortfolioData.whatsappNumber,
                 onClick = {
                     val number = PortfolioData.whatsappNumber.replace("+", "")
-                    val msg = java.net.URLEncoder.encode(PortfolioData.whatsappMessage, "UTF-8")
+                    val msg = urlEncode(PortfolioData.whatsappMessage)
                     onOpenUrl("https://wa.me/${number}?text=${msg}")
                 }
             )
@@ -205,4 +205,25 @@ private fun ContactRow(
             )
         }
     }
+}
+
+private fun urlEncode(value: String): String {
+    val allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~"
+    val sb = StringBuilder()
+    for (char in value) {
+        if (char in allowedChars) {
+            sb.append(char)
+        } else if (char == ' ') {
+            sb.append("%20")
+        } else {
+            val bytes = char.toString().encodeToByteArray()
+            for (b in bytes) {
+                sb.append('%')
+                val hex = (b.toInt() and 0xFF).toString(16).uppercase()
+                if (hex.length == 1) sb.append('0')
+                sb.append(hex)
+            }
+        }
+    }
+    return sb.toString()
 }
