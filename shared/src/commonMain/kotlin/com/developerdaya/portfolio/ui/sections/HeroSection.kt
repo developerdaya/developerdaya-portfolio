@@ -60,35 +60,6 @@ fun HeroSection(
     val colors = PortfolioTheme.colors
     val spacing = PortfolioTheme.spacing
 
-    // Entry animations
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        delay(100)
-        visible = true
-    }
-
-    val alphaAnim by animateFloatAsState(
-        targetValue = if (visible) 1f else 0f,
-        animationSpec = tween(800),
-        label = "hero_alpha"
-    )
-    val slideAnim by animateDpAsState(
-        targetValue = if (visible) 0.dp else 40.dp,
-        animationSpec = tween(800, easing = FastOutSlowInEasing),
-        label = "hero_slide"
-    )
-
-    // Bouncing arrow
-    val arrowOffset by rememberInfiniteTransition(label = "arrow").animateFloat(
-        initialValue = 0f,
-        targetValue = 8f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(900, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "arrow_bounce"
-    )
-
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -131,22 +102,16 @@ fun HeroSection(
                 )
             }
             .padding(horizontal = spacing.screenHorizontal)
-            .padding(top = 40.dp, bottom = spacing.section)
+            .padding(top = 0.dp, bottom = spacing.section)
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .offset(y = slideAnim)
-                .alpha(alphaAnim),
+            modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-        
-            Spacer(Modifier.height(spacing.xxlarge))
-
             // Name
             Text(
                 text = PortfolioData.name,
-                style = MaterialTheme.typography.displayLarge,
+                style = MaterialTheme.typography.headlineLarge.copy(fontSize = 32.sp),
                 color = Color.White,
                 fontWeight = FontWeight.Black,
                 textAlign = TextAlign.Center
@@ -154,56 +119,16 @@ fun HeroSection(
 
             Spacer(Modifier.height(spacing.small))
 
-            // Role — gradient text effect via Box overlay trick
+            // Role
             Text(
                 text = PortfolioData.role,
-                style = MaterialTheme.typography.headlineMedium,
+                style = MaterialTheme.typography.titleLarge.copy(fontSize = 18.sp),
                 color = colors.primary,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center
             )
 
-            Spacer(Modifier.height(spacing.medium))
-
-            // Availability badge
-
-
             Spacer(Modifier.height(spacing.large))
-
-            // Tagline
-            Text(
-                text = PortfolioData.heroTagline,
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF8B9CBF),
-                textAlign = TextAlign.Center,
-                modifier = Modifier.widthIn(max = 360.dp)
-            )
-
-            Spacer(Modifier.height(spacing.xlarge))
-
-            // CTA Buttons
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(spacing.medium),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                GradientButton(
-                    text = "Get in Touch",
-                    onClick = onContactClick
-                )
-                OutlineButton(
-                    text = "View Work",
-                    onClick = onViewWorkClick
-                )
-            }
-
-            Spacer(Modifier.height(spacing.xlarge))
-
-            // Quick Stats
-
-
-            Spacer(Modifier.height(spacing.section))
-
-
         }
     }
 }

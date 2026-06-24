@@ -5,6 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
@@ -19,7 +20,6 @@ import com.developerdaya.portfolio.ui.sections.ExperienceSection
 
 import com.developerdaya.portfolio.ui.sections.HeroSection
 import com.developerdaya.portfolio.ui.sections.ProjectsSection
-import com.developerdaya.portfolio.ui.sections.SkillsSection
 import com.developerdaya.portfolio.ui.theme.PortfolioTheme
 import kotlinx.coroutines.launch
 
@@ -29,13 +29,10 @@ import kotlinx.coroutines.launch
  * Sections (in order):
  *  1. HeroSection
  *  2. AboutSection
- *  3. SkillsSection
- *  4. ExperienceSection
- *  5. ProjectsSection
- *  6. EducationSection
- *  7. CertificationsSection
- *  8. ContactSection
- *  9. FooterSection
+ *  3. EducationSection
+ *  4. ProjectsSection
+ *  5. ExperienceSection
+ *  6. Bottom note
  */
 @Composable
 fun PortfolioScreen(
@@ -44,28 +41,24 @@ fun PortfolioScreen(
     val colors = PortfolioTheme.colors
     val listState = rememberLazyListState()
 
-    // Scroll-to-contact index (index 8 in lazy list)
     val coroutineScope = rememberCoroutineScope()
-    val contactIndex = 7
 
     LazyColumn(
         state = listState,
         modifier = Modifier
             .fillMaxSize()
+            .safeDrawingPadding()
             .background(colors.background)
     ) {
         // 1. Hero
         item {
             HeroSection(
                 onContactClick = {
-                    // Scroll to contact section
-                    coroutineScope.launch {
-                        listState.animateScrollToItem(contactIndex)
-                    }
+                    // Scroll to contact section (not present in current list, but keeps callback safe)
                 },
                 onViewWorkClick = {
                     coroutineScope.launch {
-                        listState.animateScrollToItem(4) // Projects section
+                        listState.animateScrollToItem(3) // Projects section (index 3: Hero=0, About=1, Education=2, Projects=3)
                     }
                 }
             )
@@ -74,19 +67,16 @@ fun PortfolioScreen(
         // 2. About
         item { AboutSection() }
 
-        // 3. Skills
-        item { SkillsSection() }
+        // 3. Education
+        item { EducationSection() }
 
-        // 4. Experience
-        item { ExperienceSection() }
-
-        // 5. Projects
+        // 4. Projects
         item { ProjectsSection(onOpenUrl = onOpenUrl) }
 
-        // 6. Education
-        item { EducationSection() }
+        // 5. Experience
+        item { ExperienceSection() }
         
-        // 7. Bottom note
+        // 6. Bottom note
         item {
             Text(
                 text = "Built with Compose Multiple Platform",

@@ -77,7 +77,7 @@ fun PortfolioApp() {
     val scrollState = rememberScrollState()
     var selectedTabIndex by remember { mutableIntStateOf(0) }
 
-    val tabs = listOf("Home", "Projects", "Skills", "Experience", "Contact")
+    val tabs = listOf("Home", "Projects", "Experience", "Contact")
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -110,9 +110,8 @@ fun PortfolioApp() {
                 when (selectedTabIndex) {
                     0 -> HomeScreen()
                     1 -> ProjectsScreen()
-                    2 -> SkillsScreen()
-                    3 -> ExperienceScreen()
-                    4 -> ContactScreen()
+                    2 -> ExperienceScreen()
+                    3 -> ContactScreen()
                 }
             }
         }
@@ -131,8 +130,6 @@ fun HomeScreen() {
         AboutMeSection()
         Spacer(modifier = Modifier.height(32.dp))
         FeaturedProjectsSection()
-        Spacer(modifier = Modifier.height(32.dp))
-        HighlightedSkillsSection()
     }
 }
 
@@ -428,39 +425,7 @@ fun ProjectCard(project: Project) {
     }
 }
 
-@Composable
-fun HighlightedSkillsSection() {
-    val highlightedSkills = listOf(
-        Skill("Kotlin", 0.95f),
-        Skill("MVVM Architecture", 0.9f),
-        Skill("Jetpack Compose", 0.85f),
-        Skill("Coroutines", 0.9f)
-    )
 
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = "KEY SKILLS",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        highlightedSkills.forEach { skill ->
-            SkillItemModern(skill)
-            Spacer(modifier = Modifier.height(12.dp))
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        FilledTonalButton(
-            onClick = { /* Navigate to Skills tab */ },
-            modifier = Modifier.align(Alignment.End)
-        ) {
-            Text("View All Skills")
-        }
-    }
-}
 
 @Composable
 fun ProjectsScreen() {
@@ -706,75 +671,7 @@ fun ProjectDetailCard(project: ProjectDetail) {
     }
 }
 
-@Composable
-fun SkillsScreen() {
-    val technicalSkills = listOf(
-        Skill("Kotlin", 0.95f),
-        Skill("Java", 0.9f),
-        Skill("MVVM Architecture", 0.9f),
-        Skill("Jetpack Compose", 0.8f),
-        Skill("Coroutines", 0.85f),
-        Skill("Room Database", 0.9f),
-        Skill("REST API", 0.9f),
-        Skill("Firebase", 0.8f),
-        Skill("GraphQL", 0.75f),
-        Skill("Git & GitHub", 0.85f),
-        Skill("Navigation Component", 0.9f),
-        Skill("Google APIs", 0.8f)
-    )
 
-    val softSkills = listOf(
-        Skill("UI/UX Design", 0.8f),
-        Skill("Team Collaboration", 0.9f),
-        Skill("Agile Methodology", 0.85f),
-        Skill("Time Management", 0.9f),
-        Skill("Clean Architecture", 0.85f),
-        Skill("SOLID Principles", 0.8f),
-        Skill("Design Patterns", 0.85f)
-    )
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
-        Text(
-            text = "MY SKILLS",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(bottom = 24.dp, top = 8.dp)
-        )
-
-        Text(
-            text = "Technical Skills",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        technicalSkills.forEach { skill ->
-            SkillItemModern(skill)
-            Spacer(modifier = Modifier.height(12.dp))
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Text(
-            text = "Soft Skills",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        softSkills.forEach { skill ->
-            SkillItemModern(skill)
-            Spacer(modifier = Modifier.height(12.dp))
-        }
-    }
-}
 
 data class Skill(val name: String, val proficiency: Float)
 

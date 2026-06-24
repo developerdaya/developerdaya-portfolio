@@ -1,8 +1,6 @@
 package com.developerdaya.portfolio.ui.sections
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,13 +8,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.developerdaya.portfolio.ui.components.PortfolioCard
 import com.developerdaya.portfolio.ui.components.SectionHeader
-import com.developerdaya.portfolio.ui.components.StatCard
 import com.developerdaya.portfolio.ui.theme.PortfolioTheme
 import com.developerdaya.portfolio.data.PortfolioData
 
@@ -45,60 +39,6 @@ fun AboutSection(modifier: Modifier = Modifier) {
                 color = colors.textSecondary,
                 lineHeight = MaterialTheme.typography.bodyLarge.lineHeight
             )
-        }
-
-        Spacer(Modifier.height(spacing.large))
-
-        // Stats grid
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(spacing.small)
-        ) {
-            PortfolioData.aboutStats.forEach { (value, label) ->
-                StatCard(
-                    value = value,
-                    label = label,
-                    modifier = Modifier.weight(1f)
-                )
-            }
-        }
-
-        Spacer(Modifier.height(spacing.large))
-
-        // Location / contact strip
-        PortfolioCard {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text(
-                        text = PortfolioData.location,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = colors.textSecondary
-                    )
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        text = PortfolioData.phone,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = colors.textSecondary
-                    )
-                }
-                Column(horizontalAlignment = Alignment.End) {
-                    Text(
-                        text = "Available for",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = colors.textSecondary
-                    )
-                    Text(
-                        text = "Full-time / Contract",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = colors.primary,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                }
-            }
         }
     }
 }
