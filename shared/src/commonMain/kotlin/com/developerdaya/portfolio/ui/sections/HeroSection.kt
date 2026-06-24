@@ -140,9 +140,7 @@ fun HeroSection(
                 .alpha(alphaAnim),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // TechBadge — "Built with Jetpack Compose"
-            TechBadge(text = "Built with Jetpack Compose")
-
+        
             Spacer(Modifier.height(spacing.xxlarge))
 
             // Name

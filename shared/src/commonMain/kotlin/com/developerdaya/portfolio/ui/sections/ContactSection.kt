@@ -39,9 +39,7 @@ import com.developerdaya.portfolio.ui.theme.PortfolioTheme
 @Composable
 fun ContactSection(
     modifier: Modifier = Modifier,
-    onEmailClick: () -> Unit = {},
-    onOpenUrl: (String) -> Unit = {},
-    onPhoneClick: () -> Unit = {}
+    onOpenUrl: (String) -> Unit = {}
 ) {
     val colors = PortfolioTheme.colors
     val spacing = PortfolioTheme.spacing
@@ -100,7 +98,7 @@ fun ContactSection(
             Spacer(Modifier.height(spacing.large))
             GradientButton(
                 text = "Say Hello",
-                onClick = onEmailClick
+                onClick = { onOpenUrl("mailto:${PortfolioData.email}") }
             )
         }
 
@@ -115,7 +113,7 @@ fun ContactSection(
                 icon = Icons.Default.Email,
                 label = "Email",
                 value = PortfolioData.email,
-                onClick = onEmailClick
+                onClick = { onOpenUrl("mailto:${PortfolioData.email}") }
             )
             ContactRow(
                 icon = Icons.Default.Person,
@@ -135,7 +133,7 @@ fun ContactSection(
                 icon = Icons.Default.Phone,
                 label = "Phone",
                 value = PortfolioData.phone,
-                onClick = onPhoneClick
+                onClick = { onOpenUrl("tel:${PortfolioData.phone}") }
             )
         }
     }
