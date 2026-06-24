@@ -42,7 +42,7 @@ data class Certification(
 object PortfolioData {
 
     val name = "Dayanand Khatik"
-    val role = "Senior Android Engineer"
+    val role = "A Passionate Android Engineer"
     val location = "India"
     val phone = "+91 9219187843"
     val whatsappNumber = "+91 9219187843"
@@ -177,10 +177,10 @@ object PortfolioData {
 
     val education = listOf(
         Education(
-            institution = "Sherwood College of Engg. Research & Technology",
+            institution = "Sherwood College of Engineering",
             degree = "B.Tech",
             period = "",
-            location = "Computer Science"
+            location = "Computer Science - 2020"
         )
     )
 

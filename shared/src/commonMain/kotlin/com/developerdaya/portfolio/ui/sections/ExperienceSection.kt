@@ -146,33 +146,12 @@ private fun TimelineItem(
                         color = colors.textSecondary
                     )
                 }
-                if (experience.isCurrent) {
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(4.dp))
-                            .background(colors.primary.copy(alpha = 0.15f))
-                            .padding(horizontal = 8.dp, vertical = 3.dp)
-                    ) {
-                        Text(
-                            text = "Current",
-                            color = colors.primary,
-                            fontSize = 10.sp,
-                            fontWeight = FontWeight.Bold,
-                            letterSpacing = 0.5.sp
-                        )
-                    }
-                }
+
             }
 
             Spacer(Modifier.height(4.dp))
 
-            // Role & Period
-            Text(
-                text = experience.role,
-                style = MaterialTheme.typography.titleLarge,
-                color = colors.primary,
-                fontWeight = FontWeight.SemiBold
-            )
+            // Period
             Text(
                 text = experience.period,
                 style = MaterialTheme.typography.labelMedium,

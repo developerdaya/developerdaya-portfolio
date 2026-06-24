@@ -86,7 +86,7 @@ fun HeroSection(
             Text(
                 text = PortfolioData.role,
                 style = MaterialTheme.typography.titleLarge.copy(fontSize = 18.sp),
-                color = colors.primary,
+                color = colors.textSecondary,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center
             )

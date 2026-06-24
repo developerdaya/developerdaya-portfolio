@@ -98,34 +98,18 @@ fun SectionHeader(
     val spacing = PortfolioTheme.spacing
 
     Column(modifier = modifier) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(spacing.medium)
-        ) {
-            // Accent line
-            Box(
-                modifier = Modifier
-                    .width(4.dp)
-                    .height(28.dp)
-                    .background(
-                        color = colors.primary,
-                        shape = RoundedCornerShape(2.dp)
-                    )
-            )
-            Text(
-                text = title,
-                style = MaterialTheme.typography.headlineLarge,
-                color = colors.textPrimary,
-                fontWeight = FontWeight.Bold
-            )
-        }
+        Text(
+            text = title,
+            style = MaterialTheme.typography.headlineLarge,
+            color = colors.textPrimary,
+            fontWeight = FontWeight.Bold
+        )
         if (subtitle != null) {
             Spacer(Modifier.height(spacing.small))
             Text(
                 text = subtitle,
                 style = MaterialTheme.typography.bodyLarge,
-                color = colors.textSecondary,
-                modifier = Modifier.padding(start = 20.dp)
+                color = colors.textSecondary
             )
         }
     }
