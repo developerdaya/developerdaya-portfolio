@@ -1,9 +1,13 @@
 package com.developerdaya.portfolio.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.material3.Text
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -81,6 +85,17 @@ fun PortfolioScreen(
 
         // 6. Education
         item { EducationSection() }
+        
+        // 7. Bottom note
+        item {
+            Text(
+                text = "Built with Compose Multiple Platform",
+                style = MaterialTheme.typography.bodySmall,
+                color = colors.textSecondary,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+        }
 
 
     }
