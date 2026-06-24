@@ -90,9 +90,9 @@ val DarkPortfolioColors = PortfolioColors(
     techBadgeTextColor = TechBadgeText,
     timelineLine = TimelineLine,
     timelineDot = TimelineDot,
-    chipBackground = Color(0xFF1F2A40),
-    chipText = Primary,
-    chipBorder = Color(0xFF2A3550),
+    chipBackground = Color(0xFF1E293B),
+    chipText = Color(0xFFF0F4FF),
+    chipBorder = Color(0xFF334155),
     chipBackgroundAlt = Color(0xFF1A1F30),
     isDark = true
 )
@@ -118,9 +118,9 @@ val LightPortfolioColors = PortfolioColors(
     techBadgeTextColor = Color(0xFF007A60),
     timelineLine = LightBorder,
     timelineDot = Primary,
-    chipBackground = Color(0xFFE6FBF7),
-    chipText = Color(0xFF006B52),
-    chipBorder = Color(0xFFB3EFE3),
+    chipBackground = Color(0xFFF1F5F9),
+    chipText = Color(0xFF0D1B2A),
+    chipBorder = Color(0xFFCBD5E1),
     chipBackgroundAlt = Color(0xFFF0F4FF),
     isDark = false
 )

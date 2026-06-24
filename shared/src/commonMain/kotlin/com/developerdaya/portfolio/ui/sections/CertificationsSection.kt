@@ -42,7 +42,7 @@ fun CertificationsSection(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = spacing.screenHorizontal)
-            .padding(vertical = spacing.section)
+            .padding(top = spacing.sectionTop, bottom = spacing.sectionBottom)
     ) {
         SectionHeader(
             title = "Certifications",

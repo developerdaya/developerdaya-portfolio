@@ -64,10 +64,10 @@ object PortfolioData {
     val skills = emptyList<String>()
 
     val skillCategories = listOf(
-        Pair("Languages", listOf("Kotlin", "Java")),
-        Pair("Android", listOf("Android", "Compose", "MVVM", "Clean Architecture", "Hilt", "Coroutines")),
-        Pair("Libraries & Tools", listOf("Retrofit", "Room", "Firebase", "Paging3", "ExoPlayer")),
-        Pair("Backend & DevOps", listOf("Springboot", "AWS", "Git", "Gitlab", "CI/CD"))
+        Pair("Languages", listOf("Kotlin")),
+        Pair("Android", listOf("Compose", "MVVM", "Clean Architecture", "Hilt", "Coroutines")),
+        Pair("Libraries & Tools", listOf("Retrofit", "Room", "Firebase", "ExoPlayer")),
+        Pair("Backend & DevOps", listOf("Springboot", "Git"))
     )
 
     val experiences = listOf(
@@ -118,7 +118,8 @@ object PortfolioData {
             techStack = listOf("MVVM", "REST APIs", "MotionLayout", "Background Services", "Google Login", "Lottie"),
             screenshotResName = "manthan_radio",
             iconResName = "manthan_radio_logo",
-            playStoreUrl = "https://play.google.com/store/apps/details?id=com.developerdaya.manthan.radio"
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.developerdaya.manthan.radio",
+            downloads = "100+"
         ),
         Project(
             title = "Deep Talk",
@@ -130,7 +131,8 @@ object PortfolioData {
             techStack = listOf("Agora Voice SDK", "Firebase Realtime db", "Background Microphone Services"),
             screenshotResName = "buddy_talk",
             iconResName = "buddy_talk_logo",
-            playStoreUrl = "https://play.google.com/store/apps/details?id=com.developerdaya.deeptalk"
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.developerdaya.deeptalk",
+            downloads = "1000+"
         ),
         Project(
             title = "Koyal FM",
@@ -142,7 +144,8 @@ object PortfolioData {
             techStack = listOf("MotionLayout", "Background Music Service", "MediaStyle Notification", "Lottie"),
             screenshotResName = "koyal_fm",
             iconResName = "koyal_fm_logo",
-            playStoreUrl = "https://play.google.com/store/apps/details?id=com.koyalfm.koyalfmapp"
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.koyalfm.koyalfmapp",
+            downloads = "100+"
         ),
         Project(
             title = "Goochil User",
@@ -154,7 +157,8 @@ object PortfolioData {
             techStack = listOf("MVVM", "Live Tracking", "Google Map", "Firebase Realtime Database"),
             screenshotResName = "goochil",
             iconResName = "goochil_logo",
-            playStoreUrl = "https://play.google.com/store/apps/details?id=com.fluper.multitaxibooking"
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.fluper.multitaxibooking",
+            downloads = "100+"
         ),
         Project(
             title = "EduGorilla",
@@ -166,16 +170,17 @@ object PortfolioData {
             techStack = listOf("REST APIs", "Firebase Notifications", "Zoom SDK"),
             screenshotResName = "edugorilla",
             iconResName = "edugorilla_logo",
-            playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.testseries.edugorilla"
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.testseries.edugorilla",
+            downloads = "100K+"
         )
     )
 
     val education = listOf(
         Education(
             institution = "Sherwood College of Engg. Research & Technology",
-            degree = "B.Tech (Software Engineering)",
+            degree = "B.Tech",
             period = "",
-            location = "India"
+            location = "Computer Science"
         )
     )
 

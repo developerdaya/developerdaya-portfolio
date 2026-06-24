@@ -102,7 +102,7 @@ fun HeroSection(
                 )
             }
             .padding(horizontal = spacing.screenHorizontal)
-            .padding(top = 0.dp, bottom = spacing.section)
+            .padding(top = 14.dp, bottom = spacing.sectionBottom)
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),

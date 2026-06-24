@@ -55,7 +55,7 @@ fun ContactSection(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = spacing.screenHorizontal)
-            .padding(vertical = spacing.section),
+            .padding(top = spacing.sectionTop, bottom = spacing.sectionBottom),
         horizontalAlignment = Alignment.Start
     ) {
         SectionHeader(

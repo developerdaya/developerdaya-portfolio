@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +29,8 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.developerdaya.portfolio.ui.components.SkillChip
+import com.developerdaya.portfolio.ui.components.ChipVariant
 import com.developerdaya.portfolio.ui.components.SectionHeader
 import com.developerdaya.portfolio.ui.theme.PortfolioTheme
 import com.developerdaya.portfolio.data.Experience
@@ -42,7 +45,7 @@ fun ExperienceSection(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = spacing.screenHorizontal)
-            .padding(vertical = spacing.section)
+            .padding(top = spacing.sectionTop, bottom = spacing.sectionBottom)
     ) {
         SectionHeader(
             title = "Experience",
@@ -56,6 +59,27 @@ fun ExperienceSection(modifier: Modifier = Modifier) {
                 experience = experience,
                 isLast = false
             )
+        }
+
+        Spacer(Modifier.height(spacing.large))
+
+        Text(
+            text = "Technical Skills",
+            style = MaterialTheme.typography.titleMedium,
+            color = colors.textPrimary,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = spacing.small)
+        )
+
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(spacing.small),
+            verticalArrangement = Arrangement.spacedBy(spacing.small),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            val allSkills = PortfolioData.skillCategories.flatMap { it.second }
+            allSkills.forEach { skill ->
+                SkillChip(text = skill, variant = ChipVariant.Default)
+            }
         }
     }
 }

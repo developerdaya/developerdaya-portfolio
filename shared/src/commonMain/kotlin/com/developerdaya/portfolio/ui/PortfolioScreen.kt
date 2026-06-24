@@ -3,6 +3,7 @@ package com.developerdaya.portfolio.ui
 import androidx.compose.foundation.background
 import androidx.compose.material3.Text
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeDrawingPadding
@@ -12,7 +13,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import com.developerdaya.portfolio.ui.sections.AboutSection
 
 
 import com.developerdaya.portfolio.ui.sections.EducationSection
@@ -28,11 +28,10 @@ import kotlinx.coroutines.launch
  *
  * Sections (in order):
  *  1. HeroSection
- *  2. AboutSection
- *  3. EducationSection
- *  4. ProjectsSection
- *  5. ExperienceSection
- *  6. Bottom note
+ *  2. EducationSection
+ *  3. ProjectsSection
+ *  4. ExperienceSection
+ *  5. Bottom note
  */
 @Composable
 fun PortfolioScreen(
@@ -47,8 +46,8 @@ fun PortfolioScreen(
         state = listState,
         modifier = Modifier
             .fillMaxSize()
-            .safeDrawingPadding()
             .background(colors.background)
+            .safeDrawingPadding()
     ) {
         // 1. Hero
         item {
@@ -58,35 +57,19 @@ fun PortfolioScreen(
                 },
                 onViewWorkClick = {
                     coroutineScope.launch {
-                        listState.animateScrollToItem(3) // Projects section (index 3: Hero=0, About=1, Education=2, Projects=3)
+                        listState.animateScrollToItem(2) // Projects section (index 2: Hero=0, Education=1, Projects=2)
                     }
                 }
             )
         }
 
-        // 2. About
-        item { AboutSection() }
-
-        // 3. Education
+        // 2. Education
         item { EducationSection() }
 
-        // 4. Projects
+        // 3. Projects
         item { ProjectsSection(onOpenUrl = onOpenUrl) }
 
-        // 5. Experience
+        // 4. Experience
         item { ExperienceSection() }
-        
-        // 6. Bottom note
-        item {
-            Text(
-                text = "Built with Compose Multiple Platform",
-                style = MaterialTheme.typography.bodySmall,
-                color = colors.textSecondary,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
-        }
-
-
     }
 }

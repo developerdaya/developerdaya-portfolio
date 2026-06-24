@@ -28,8 +28,9 @@ object Spacing {
     /** 48.dp - xxlarge spacing */
     val xxlarge = 48.dp
 
-    /** 64.dp - section spacing (between major sections) */
-    val section = 16.dp
+    /** section spacing (between major sections) */
+    val sectionTop = 6.dp
+    val sectionBottom = 16.dp
 
     /** 80.dp - hero spacing */
     val hero = 80.dp

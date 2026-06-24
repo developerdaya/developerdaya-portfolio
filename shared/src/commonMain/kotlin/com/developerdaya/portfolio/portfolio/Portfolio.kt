@@ -127,8 +127,6 @@ fun HomeScreen() {
     ) {
         HeroSection()
         Spacer(modifier = Modifier.height(32.dp))
-        AboutMeSection()
-        Spacer(modifier = Modifier.height(32.dp))
         FeaturedProjectsSection()
     }
 }
@@ -239,100 +237,7 @@ fun SocialButton(icon: androidx.compose.ui.graphics.vector.ImageVector, contentD
     }
 }
 
-@Composable
-fun AboutMeSection() {
-    ElevatedCard(
-        modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(4.dp),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        )
-    ) {
-        Column(
-            modifier = Modifier.padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "ABOUT ME",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "Senior Android Developer with 5 years of experience crafting high-quality applications using Kotlin, Java, and Git. Proven expertise in leveraging RESTful APIs, Firebase, and Android Jetpack libraries to deliver seamless user experiences.",
-                fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onSurface,
-                lineHeight = 24.sp,
-                textAlign = TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                InfoItem(
-                    icon = Icons.Default.Work,
-                    title = "5+ Years",
-                    subtitle = "Experience"
-                )
-
-                InfoItem(
-                    icon = Icons.Outlined.Code,
-                    title = "10+",
-                    subtitle = "Projects"
-                )
-
-                InfoItem(
-                    icon = Icons.Outlined.Devices,
-                    title = "Android",
-                    subtitle = "Expert"
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun InfoItem(icon: androidx.compose.ui.graphics.vector.ImageVector, title: String, subtitle: String) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box(
-            modifier = Modifier
-                .size(50.dp)
-                .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.primaryContainer),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(24.dp)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(
-            text = title,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface
-        )
-
-        Text(
-            text = subtitle,
-            fontSize = 14.sp,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-    }
-}
 
 @Composable
 fun FeaturedProjectsSection() {

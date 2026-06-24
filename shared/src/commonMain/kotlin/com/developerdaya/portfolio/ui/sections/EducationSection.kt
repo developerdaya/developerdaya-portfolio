@@ -37,7 +37,7 @@ fun EducationSection(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = spacing.screenHorizontal)
-            .padding(vertical = spacing.section)
+            .padding(top = spacing.sectionTop, bottom = spacing.sectionBottom)
     ) {
         SectionHeader(title = "Education")
 
@@ -78,15 +78,16 @@ fun EducationSection(modifier: Modifier = Modifier) {
                         )
                         Spacer(Modifier.height(4.dp))
                         Text(
+                            text = edu.location,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = colors.textSecondary,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Spacer(Modifier.height(6.dp))
+                        Text(
                             text = edu.institution,
                             style = MaterialTheme.typography.bodyMedium,
                             color = colors.primary
-                        )
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            text = "${edu.location} · ${edu.period}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = colors.textSecondary
                         )
                     }
                 }
