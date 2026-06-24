@@ -19,7 +19,8 @@ data class Project(
     val techStack: List<String>,
     val playStoreUrl: String? = null,
     val downloads: String? = null,
-    val screenshotResName: String? = null
+    val screenshotResName: String? = null,
+    val iconResName: String? = null
 )
 
 data class Education(
@@ -102,9 +103,10 @@ object PortfolioData {
                 "Enabled live singing with real-time echo & reverb control for smooth audio experience."
             ),
             techStack = listOf("Google Oboe", "Native C++", "Background services", "In-App Purchases", "Razorpay"),
-            playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.liveechomic",
+            playStoreUrl = "https://play.google.com/store/apps/details?id=com.developerdaya.liveechoapp",
             downloads = "100K+",
-            screenshotResName = "live_echo"
+            screenshotResName = "live_echo",
+            iconResName = "live_echo_icon"
         ),
         Project(
             title = "Manthan Radio",
@@ -113,16 +115,20 @@ object PortfolioData {
                 "Developed User & Admin panels along with backend APIs using Kotlin Spring Boot.",
                 "Users can listen to stories and share their stories or knowledge with the world."
             ),
-            techStack = listOf("MVVM", "REST APIs", "MotionLayout", "Background Services", "Google Login", "Lottie")
+            techStack = listOf("MVVM", "REST APIs", "MotionLayout", "Background Services", "Google Login", "Lottie"),
+            screenshotResName = "manthan_radio",
+            iconResName = "manthan_radio_logo"
         ),
         Project(
-            title = "Deep Talk",
+            title = "Buddy Talk",
             description = "Random voice calling app to connect like-minded people worldwide.",
             bullets = listOf(
                 "Created a random voice calling app to connect like-minded people worldwide.",
                 "Users can connect based on selected topics to exchange knowledge in real time."
             ),
-            techStack = listOf("Agora Voice SDK", "Firebase Realtime db", "Background Microphone Services")
+            techStack = listOf("Agora Voice SDK", "Firebase Realtime db", "Background Microphone Services"),
+            screenshotResName = "buddy_talk",
+            iconResName = "buddy_talk_logo"
         ),
         Project(
             title = "Koyal FM",
@@ -131,7 +137,9 @@ object PortfolioData {
                 "Created a story listing audio app similar to Kuku FM with background story playback.",
                 "Users can listen stories category-wise & continue listening even when device is locked."
             ),
-            techStack = listOf("MotionLayout", "Background Music Service", "MediaStyle Notification", "Lottie")
+            techStack = listOf("MotionLayout", "Background Music Service", "MediaStyle Notification", "Lottie"),
+            screenshotResName = "koyal_fm",
+            iconResName = "koyal_fm_logo"
         ),
         Project(
             title = "Goochil User",

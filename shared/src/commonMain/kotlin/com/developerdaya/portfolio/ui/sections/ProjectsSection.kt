@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -44,13 +45,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.developerdaya.portfolio.data.PortfolioData
 import com.developerdaya.portfolio.data.Project
-import com.developerdaya.portfolio.ui.components.ChipVariant
 import com.developerdaya.portfolio.ui.components.SectionHeader
-import com.developerdaya.portfolio.ui.components.SkillChip
 import com.developerdaya.portfolio.ui.theme.PortfolioTheme
 import org.jetbrains.compose.resources.painterResource
-import portfolio.shared.generated.resources.Res
-import portfolio.shared.generated.resources.live_echo
+import portfolio.shared.generated.resources.*
 
 @Composable
 fun ProjectsSection(modifier: Modifier = Modifier, onOpenUrl: (String) -> Unit = {}) {
@@ -134,21 +132,38 @@ private fun ProjectCard(
                         .border(1.dp, Color(0xFF333333), RoundedCornerShape(12.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-                    val icon = when (project.title.lowercase()) {
-                        "live echo mic" -> Icons.Default.Mic
-                        "manthan radio" -> Icons.Default.Radio
-                        "deep talk" -> Icons.Default.Call
-                        "koyal fm" -> Icons.Default.MusicNote
-                        "goochil user" -> Icons.Default.LocalTaxi
-                        "edugorilla" -> Icons.Default.School
-                        else -> Icons.Default.Laptop
+                    val iconPainter = when (project.iconResName) {
+                        "live_echo_icon" -> painterResource(Res.drawable.live_echo_icon)
+                        "manthan_radio_logo" -> painterResource(Res.drawable.manthan_radio_logo)
+                        "buddy_talk_logo" -> painterResource(Res.drawable.buddy_talk_logo)
+                        "koyal_fm_logo" -> painterResource(Res.drawable.koyal_fm_logo)
+                        else -> null
                     }
-                    Icon(
-                        imageVector = icon,
-                        contentDescription = "Project Icon",
-                        tint = colors.primary,
-                        modifier = Modifier.size(32.dp)
-                    )
+
+                    if (iconPainter != null) {
+                        Image(
+                            painter = iconPainter,
+                            contentDescription = "Project Icon",
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Crop
+                        )
+                    } else {
+                        val icon = when (project.title.lowercase()) {
+                            "live echo mic" -> Icons.Default.Mic
+                            "manthan radio" -> Icons.Default.Radio
+                            "buddy talk" -> Icons.Default.Call
+                            "koyal fm" -> Icons.Default.MusicNote
+                            "goochil user" -> Icons.Default.LocalTaxi
+                            "edugorilla" -> Icons.Default.School
+                            else -> Icons.Default.Laptop
+                        }
+                        Icon(
+                            imageVector = icon,
+                            contentDescription = "Project Icon",
+                            tint = colors.primary,
+                            modifier = Modifier.size(32.dp)
+                        )
+                    }
                 }
 
                 // Name, Subtext & Google Play Button
@@ -182,6 +197,9 @@ private fun ProjectCard(
             // 2. Screenshot & Bullet Points Row
             val screenshotPainter = when (project.screenshotResName) {
                 "live_echo" -> painterResource(Res.drawable.live_echo)
+                "manthan_radio" -> painterResource(Res.drawable.manthan_radio)
+                "buddy_talk" -> painterResource(Res.drawable.buddy_talk)
+                "koyal_fm" -> painterResource(Res.drawable.koyal_fm)
                 else -> null
             }
 
@@ -244,17 +262,39 @@ private fun ProjectCard(
 
             Spacer(Modifier.height(spacing.medium))
 
-            // 3. Tech Stack Chips at Bottom
+            // 3. Tech Stack Chips at Bottom (Very Small)
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
                 verticalArrangement = Arrangement.spacedBy(spacing.small),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 project.techStack.forEach { tech ->
-                    SkillChip(text = tech, variant = ChipVariant.Default)
+                    SmallTechChip(text = tech)
                 }
             }
         }
+    }
+}
+
+@Composable
+fun SmallTechChip(
+    text: String,
+    modifier: Modifier = Modifier
+) {
+    val colors = PortfolioTheme.colors
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(4.dp))
+            .background(colors.chipBackground)
+            .border(width = 1.dp, color = colors.chipBorder, shape = RoundedCornerShape(4.dp))
+            .padding(horizontal = 6.dp, vertical = 2.dp)
+    ) {
+        Text(
+            text = text,
+            color = colors.chipText,
+            fontSize = 9.sp,
+            fontWeight = FontWeight.Medium
+        )
     }
 }
 
@@ -269,12 +309,12 @@ fun GooglePlayButton(
             .background(Color.Black)
             .border(1.dp, Color(0xFF333333), RoundedCornerShape(6.dp))
             .clickable { onClick() }
-            .padding(horizontal = 10.dp, vertical = 5.dp),
+            .padding(horizontal = 10.dp, vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         // Draw custom Google Play triangle logo
-        Canvas(modifier = Modifier.size(14.dp)) {
+        Canvas(modifier = Modifier.size(16.dp)) {
             val w = size.width
             val h = size.height
 
@@ -316,21 +356,12 @@ fun GooglePlayButton(
             drawPath(redPath, color = Color(0xFFFF3A44))
         }
 
-        Column(verticalArrangement = Arrangement.Center) {
-            Text(
-                text = "GET IT ON",
-                color = Color.White,
-                fontSize = 6.sp,
-                fontWeight = FontWeight.Normal,
-                letterSpacing = 0.5.sp
-            )
-            Text(
-                text = "Google Play",
-                color = Color.White,
-                fontSize = 10.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 0.2.sp
-            )
-        }
+        Text(
+            text = "Play Store",
+            color = Color.White,
+            fontSize = 11.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 0.2.sp
+        )
     }
 }
