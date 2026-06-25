@@ -50,22 +50,6 @@ fun EducationSection(modifier: Modifier = Modifier) {
                     verticalAlignment = Alignment.Top,
                     horizontalArrangement = Arrangement.spacedBy(spacing.medium)
                 ) {
-                    // Icon box
-                    Box(
-                        modifier = Modifier
-                            .size(44.dp)
-                            .clip(RoundedCornerShape(10.dp))
-                            .background(colors.primary),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.School,
-                            contentDescription = null,
-                            tint = colors.background,
-                            modifier = Modifier.size(24.dp)
-                        )
-                    }
-
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
                             text = edu.degree,
@@ -84,7 +68,7 @@ fun EducationSection(modifier: Modifier = Modifier) {
                         Text(
                             text = edu.institution,
                             style = MaterialTheme.typography.bodyMedium,
-                            color = colors.primary
+                            color = colors.textSecondary
                         )
                     }
                 }
