@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -68,13 +69,38 @@ fun ProjectsSection(modifier: Modifier = Modifier, onOpenUrl: (String) -> Unit =
 
         Spacer(Modifier.height(spacing.large))
 
-        PortfolioData.projects.forEachIndexed { index, project ->
-            ProjectCard(
-                project = project,
-                index = index,
-                onOpenUrl = onOpenUrl
-            )
-            Spacer(Modifier.height(spacing.medium))
+        androidx.compose.foundation.layout.BoxWithConstraints {
+            val columns = when {
+                maxWidth >= 1024.dp -> 3
+                maxWidth >= 600.dp -> 2
+                else -> 1
+            }
+
+            val chunkedProjects = PortfolioData.projects.chunked(columns)
+
+            Column(verticalArrangement = Arrangement.spacedBy(spacing.medium)) {
+                chunkedProjects.forEach { rowProjects ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth().height(androidx.compose.foundation.layout.IntrinsicSize.Max),
+                        horizontalArrangement = Arrangement.spacedBy(spacing.medium)
+                    ) {
+                        rowProjects.forEach { project ->
+                            ProjectCard(
+                                project = project,
+                                index = PortfolioData.projects.indexOf(project),
+                                modifier = Modifier.weight(1f),
+                                onOpenUrl = onOpenUrl
+                            )
+                        }
+
+                        if (rowProjects.size < columns) {
+                            repeat(columns - rowProjects.size) {
+                                Spacer(modifier = Modifier.weight(1f))
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -92,6 +118,7 @@ private fun ProjectCard(
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .fillMaxHeight()
             .clip(RoundedCornerShape(16.dp))
             .background(colors.cardBackground)
             .border(1.dp, colors.border, RoundedCornerShape(16.dp))
@@ -104,7 +131,7 @@ private fun ProjectCard(
                 .background(colors.primary)
         )
 
-        Column(modifier = Modifier.padding(spacing.cardPadding)) {
+        Column(modifier = Modifier.padding(spacing.cardPadding).weight(1f)) {
             // 1. Icon & Name Row (Icon + Name & Play Button)
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -252,7 +279,7 @@ private fun ProjectCard(
                 }
             }
 
-            Spacer(Modifier.height(spacing.medium))
+            Spacer(Modifier.weight(1f))
 
             // 3. Tech Stack Chips at Bottom (Very Small)
             FlowRow(

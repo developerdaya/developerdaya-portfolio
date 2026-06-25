@@ -44,8 +44,9 @@ fun EducationSection(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(spacing.large))
 
         PortfolioData.education.forEach { edu ->
-            PortfolioCard {
+            Box(modifier = Modifier.fillMaxWidth().padding(bottom = spacing.medium)) {
                 Row(
+                    modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.Top,
                     horizontalArrangement = Arrangement.spacedBy(spacing.medium)
                 ) {

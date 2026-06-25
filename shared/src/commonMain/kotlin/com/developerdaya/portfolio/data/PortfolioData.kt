@@ -115,7 +115,7 @@ object PortfolioData {
                 "Developed User & Admin panels along with backend APIs using Kotlin Spring Boot.",
                 "Users can listen to stories and share their stories or knowledge with the world."
             ),
-            techStack = listOf("MVVM", "REST APIs", "MotionLayout", "Background Services", "Google Login", "Lottie"),
+            techStack = listOf("MVVM", "REST APIs", "MotionLayout", "Background Services", "Google Login"),
             screenshotResName = "manthan_radio",
             iconResName = "manthan_radio_logo",
             playStoreUrl = "https://play.google.com/store/apps/details?id=com.developerdaya.manthan.radio",

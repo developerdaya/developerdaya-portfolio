@@ -57,17 +57,17 @@ fun PortfolioScreen(
                 },
                 onViewWorkClick = {
                     coroutineScope.launch {
-                        listState.animateScrollToItem(2) // Projects section (index 2: Hero=0, Education=1, Projects=2)
+                        listState.animateScrollToItem(1) // Projects section (index 1: Hero=0, Projects=1, Education=2)
                     }
                 }
             )
         }
 
-        // 2. Education
-        item { EducationSection() }
-
-        // 3. Projects
+        // 2. Projects
         item { ProjectsSection(onOpenUrl = onOpenUrl) }
+
+        // 3. Education
+        item { EducationSection() }
 
         // 4. Experience
         item { ExperienceSection() }
