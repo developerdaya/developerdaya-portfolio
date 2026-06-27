@@ -72,11 +72,21 @@ object PortfolioData {
 
     val experiences = listOf(
         Experience(
+            company = "NeoSOFT",
+            location = "Mumbai Maharashtra, India",
+            role = "Android Developer",
+            period = "April 2026 - June 2026",
+            highlights = listOf(
+                "Worked on the HRM application, an attendance management platform, contributing to feature development and maintenance.",
+                "Redesigned and migrated the native Connecto application to Compose Multiplatform, improving code reusability and cross-platform scalability."
+            )
+        ),
+        Experience(
             company = "Infobay.ai (EduGorilla)",
             location = "Lucknow, Uttar Pradesh, India",
             role = "Android Developer",
             period = "October 2024 - January 2026",
-            isCurrent = true,
+            isCurrent = false,
             highlights = listOf(
                 "Built and maintained white-label Android applications for 5,000+ clients with EduGorilla.",
                 "Owned Android delivery as Android Manager, handling client feedback, architecture decisions, and multi-device testing."
