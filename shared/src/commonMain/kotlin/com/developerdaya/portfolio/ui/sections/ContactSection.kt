@@ -88,16 +88,42 @@ fun ContactSection(
             )
             Spacer(Modifier.height(spacing.small))
             Text(
-                text = "Whether you have a role in mind, a project to discuss, or just want to connect — my inbox is open.",
+                text = "For any query, feel free to contact on WhatsApp",
                 style = MaterialTheme.typography.bodyMedium,
                 color = colors.textSecondary,
                 textAlign = TextAlign.Center
             )
             Spacer(Modifier.height(spacing.large))
-            GradientButton(
-                text = "Say Hello",
-                onClick = { onOpenUrl("mailto:${PortfolioData.email}") }
-            )
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(androidx.compose.ui.graphics.Color(0xFF25D366))
+                    .clickable(onClick = {
+                        val number = PortfolioData.whatsappNumber.replace("+", "")
+                        val msg = urlEncode(PortfolioData.whatsappMessage)
+                        onOpenUrl("https://wa.me/${number}?text=${msg}")
+                    })
+                    .padding(horizontal = 20.dp, vertical = 12.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Message,
+                        contentDescription = "WhatsApp",
+                        tint = androidx.compose.ui.graphics.Color.White,
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Text(
+                        text = "Say Hello",
+                        color = androidx.compose.ui.graphics.Color.White,
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
+            }
         }
 
         Spacer(Modifier.height(spacing.large))
@@ -107,42 +133,20 @@ fun ContactSection(
             verticalArrangement = Arrangement.spacedBy(spacing.small),
             modifier = Modifier.fillMaxWidth()
         ) {
-            ContactRow(
-                icon = Icons.Default.Email,
-                label = "Email",
-                value = PortfolioData.email,
-                onClick = { onOpenUrl("mailto:${PortfolioData.email}") }
-            )
-            ContactRow(
-                icon = Icons.Default.Person,
-                label = "LinkedIn",
-                value = PortfolioData.linkedIn,
-                onClick = {onOpenUrl(PortfolioData.linkedInUrl)}
-            )
-            ContactRow(
-                icon = Icons.Default.Code,
-                label = "GitHub",
-                value = PortfolioData.github,
-                onClick = {
-                    onOpenUrl(PortfolioData.githubUrl)
+            PortfolioData.contactOptions.forEach { option ->
+                val icon = when (option.iconType) {
+                    com.developerdaya.portfolio.data.ContactIconType.PHONE -> Icons.Default.Phone
+                    com.developerdaya.portfolio.data.ContactIconType.EMAIL -> Icons.Default.Email
+                    com.developerdaya.portfolio.data.ContactIconType.LINKEDIN -> Icons.Default.Person
+                    com.developerdaya.portfolio.data.ContactIconType.GITHUB -> Icons.Default.Code
                 }
-            )
-            ContactRow(
-                icon = Icons.Default.Phone,
-                label = "Phone",
-                value = PortfolioData.phone,
-                onClick = { onOpenUrl("tel:${PortfolioData.phone}") }
-            )
-            ContactRow(
-                icon = Icons.Default.Message,
-                label = "WhatsApp",
-                value = PortfolioData.whatsappNumber,
-                onClick = {
-                    val number = PortfolioData.whatsappNumber.replace("+", "")
-                    val msg = urlEncode(PortfolioData.whatsappMessage)
-                    onOpenUrl("https://wa.me/${number}?text=${msg}")
-                }
-            )
+                ContactRow(
+                    icon = icon,
+                    label = option.label,
+                    value = option.value,
+                    onClick = { onOpenUrl(option.actionUrl) }
+                )
+            }
         }
     }
 }

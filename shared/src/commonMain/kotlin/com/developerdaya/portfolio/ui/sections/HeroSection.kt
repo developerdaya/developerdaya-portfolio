@@ -91,7 +91,57 @@ fun HeroSection(
                 textAlign = TextAlign.Center
             )
 
-            // Reduced bottom padding by removing bottom spacer
+            Spacer(Modifier.height(spacing.medium))
+
+            // Animated Tagline
+            TypingAnimatedText(
+                lines = PortfolioData.animatedTaglines,
+                textStyle = MaterialTheme.typography.titleMedium.copy(
+                    fontSize = 18.sp,
+                    color = colors.primary,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+
         }
     }
+}
+
+@Composable
+fun TypingAnimatedText(
+    lines: List<String>,
+    textStyle: androidx.compose.ui.text.TextStyle,
+    modifier: Modifier = Modifier
+) {
+    var textToDisplay by remember { mutableStateOf("") }
+    var lineIndex by remember { mutableStateOf(0) }
+    
+    LaunchedEffect(lines) {
+        while (true) {
+            val currentLine = lines[lineIndex]
+            
+            // Type
+            for (i in 0..currentLine.length) {
+                textToDisplay = currentLine.substring(0, i)
+                delay(100) // typing speed
+            }
+            
+            // Pause
+            delay(1500)
+            
+            // Erase
+            for (i in currentLine.length downTo 0) {
+                textToDisplay = currentLine.substring(0, i)
+                delay(50) // erasing speed
+            }
+            
+            lineIndex = (lineIndex + 1) % lines.size
+        }
+    }
+    
+    Text(
+        text = textToDisplay + "|",
+        style = textStyle,
+        modifier = modifier
+    )
 }

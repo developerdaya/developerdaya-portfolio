@@ -36,17 +36,28 @@ data class Certification(
     val credentialUrl: String? = null
 )
 
+enum class ContactIconType {
+    PHONE, EMAIL, LINKEDIN, GITHUB
+}
+
+data class ContactOption(
+    val iconType: ContactIconType,
+    val label: String,
+    val value: String,
+    val actionUrl: String
+)
+
 // ============================================================
 // Resume Content
 // ============================================================
 object PortfolioData {
 
     val name = "Dayanand Khatik"
-    val role = "A Passionate Android Engineer"
+    val role = "Passionate Android Engineer – 5+ Years"
     val location = "India"
     val phone = "+91 9219187843"
     val whatsappNumber = "+91 9219187843"
-    val whatsappMessage = "Hello, I'd like to discuss your portfolio!"
+    val whatsappMessage = "Hello, I'd like to discuss about my app idea, let me know when you are available."
     val email = "erdayanandkhatik@gmail.com"
     val linkedIn = "Dayanand Khatik"
     val linkedInUrl = "https://www.linkedin.com/in/dayanand-khatik"
@@ -55,10 +66,21 @@ object PortfolioData {
     val portfolio = "Portfolio"
     val yearsOfExperience = "5+"
 
-    val aboutSummary = "Android developer passionate about building delightful mobile experiences."
+    val aboutSummary = "Passionate Android Engineer with 5+ years of experience building scalable,high-performance Android applications, specializing in MVVM, Clean Architecture, and modern Android development."
     val heroTagline = "Building delightful Android experiences with modern tech"
+    val animatedTaglines = listOf(
+        "Inventing the unseen,",
+        "Code. Create. Innovate."
+    )
     val aboutStats = listOf(
         Pair("5+", "Years Experience")
+    )
+
+    val contactOptions = listOf(
+        ContactOption(ContactIconType.PHONE, "Phone", "+91 9219187843", "tel:+919219187843"),
+        ContactOption(ContactIconType.EMAIL, "Email", "erdayanandkhatik@gmail.com", "mailto:erdayanandkhatik@gmail.com"),
+        ContactOption(ContactIconType.LINKEDIN, "LinkedIn", "Dayanand Khatik", "https://www.linkedin.com/in/dayanand-khatik-7078021b5/"),
+        ContactOption(ContactIconType.GITHUB, "GitHub", "developerdaya", "https://github.com/developerdaya")
     )
 
     val skills = emptyList<String>()

@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 
 import com.developerdaya.portfolio.ui.sections.EducationSection
 import com.developerdaya.portfolio.ui.sections.ExperienceSection
-
+import com.developerdaya.portfolio.ui.sections.ContactSection
 import com.developerdaya.portfolio.ui.sections.HeroSection
 import com.developerdaya.portfolio.ui.sections.ProjectsSection
 import com.developerdaya.portfolio.ui.theme.PortfolioTheme
@@ -71,5 +71,8 @@ fun PortfolioScreen(
 
         // 4. Experience
         item { ExperienceSection() }
+
+        // 5. Contact
+        item { ContactSection(onOpenUrl = onOpenUrl) }
     }
 }
