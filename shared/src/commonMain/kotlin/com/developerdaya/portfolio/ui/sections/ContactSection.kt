@@ -65,87 +65,124 @@ fun ContactSection(
 
         Spacer(Modifier.height(spacing.large))
 
-        // CTA card
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(20.dp))
-                .background(colors.alternateBackground)
-                .border(
-                    width = 1.dp,
-                    color = colors.border,
-                    shape = RoundedCornerShape(20.dp)
-                )
-                .padding(spacing.large),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "I'm currently open to new opportunities",
-                style = MaterialTheme.typography.headlineSmall,
-                color = colors.textPrimary,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
-            )
-            Spacer(Modifier.height(spacing.small))
-            Text(
-                text = "For any query, feel free to contact on WhatsApp",
-                style = MaterialTheme.typography.bodyMedium,
-                color = colors.textSecondary,
-                textAlign = TextAlign.Center
-            )
-            Spacer(Modifier.height(spacing.large))
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(androidx.compose.ui.graphics.Color(0xFF25D366))
-                    .clickable(onClick = {
-                        val number = PortfolioData.whatsappNumber.replace("+", "")
-                        val msg = urlEncode(PortfolioData.whatsappMessage)
-                        onOpenUrl("https://wa.me/${number}?text=${msg}")
-                    })
-                    .padding(horizontal = 20.dp, vertical = 12.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Message,
-                        contentDescription = "WhatsApp",
-                        tint = androidx.compose.ui.graphics.Color.White,
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Text(
-                        text = "Say Hello",
-                        color = androidx.compose.ui.graphics.Color.White,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                }
+        androidx.compose.foundation.layout.BoxWithConstraints {
+            val columns = when {
+                maxWidth >= 1024.dp -> 3
+                maxWidth >= 600.dp -> 2
+                else -> 1
             }
-        }
 
-        Spacer(Modifier.height(spacing.large))
+            Column(modifier = Modifier.fillMaxWidth()) {
+                // CTA card
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(spacing.small)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(colors.alternateBackground)
+                            .border(
+                                width = 1.dp,
+                                color = colors.border,
+                                shape = RoundedCornerShape(20.dp)
+                            )
+                            .padding(spacing.large),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = "I'm currently open to new opportunities",
+                            style = MaterialTheme.typography.headlineSmall,
+                            color = colors.textPrimary,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center
+                        )
+                        Spacer(Modifier.height(spacing.small))
+                        Text(
+                            text = "For any query, feel free to contact on WhatsApp",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = colors.textSecondary,
+                            textAlign = TextAlign.Center
+                        )
+                        Spacer(Modifier.height(spacing.large))
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(androidx.compose.ui.graphics.Color(0xFF25D366))
+                                .clickable(onClick = {
+                                    val number = PortfolioData.whatsappNumber.replace("+", "")
+                                    val msg = urlEncode(PortfolioData.whatsappMessage)
+                                    onOpenUrl("https://wa.me/${number}?text=${msg}")
+                                })
+                                .padding(horizontal = 20.dp, vertical = 12.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Message,
+                                    contentDescription = "WhatsApp",
+                                    tint = androidx.compose.ui.graphics.Color.White,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Text(
+                                    text = "Say Hello",
+                                    color = androidx.compose.ui.graphics.Color.White,
+                                    style = MaterialTheme.typography.labelLarge,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                            }
+                        }
+                    }
 
-        // Contact links
-        Column(
-            verticalArrangement = Arrangement.spacedBy(spacing.small),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            PortfolioData.contactOptions.forEach { option ->
-                val icon = when (option.iconType) {
-                    com.developerdaya.portfolio.data.ContactIconType.PHONE -> Icons.Default.Phone
-                    com.developerdaya.portfolio.data.ContactIconType.EMAIL -> Icons.Default.Email
-                    com.developerdaya.portfolio.data.ContactIconType.LINKEDIN -> Icons.Default.Person
-                    com.developerdaya.portfolio.data.ContactIconType.GITHUB -> Icons.Default.Code
+                    if (columns > 1) {
+                        repeat(columns - 1) {
+                            Spacer(modifier = Modifier.weight(1f))
+                        }
+                    }
                 }
-                ContactRow(
-                    icon = icon,
-                    label = option.label,
-                    value = option.value,
-                    onClick = { onOpenUrl(option.actionUrl) }
-                )
+
+                Spacer(Modifier.height(spacing.large))
+
+                // Contact links
+                val chunkedOptions = PortfolioData.contactOptions.chunked(columns)
+
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(spacing.small),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    chunkedOptions.forEach { rowOptions ->
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(spacing.small)
+                        ) {
+                            rowOptions.forEach { option ->
+                                val icon = when (option.iconType) {
+                                    com.developerdaya.portfolio.data.ContactIconType.PHONE -> Icons.Default.Phone
+                                    com.developerdaya.portfolio.data.ContactIconType.EMAIL -> Icons.Default.Email
+                                    com.developerdaya.portfolio.data.ContactIconType.LINKEDIN -> Icons.Default.Person
+                                    com.developerdaya.portfolio.data.ContactIconType.GITHUB -> Icons.Default.Code
+                                }
+                                ContactRow(
+                                    icon = icon,
+                                    label = option.label,
+                                    value = option.value,
+                                    onClick = { onOpenUrl(option.actionUrl) },
+                                    modifier = Modifier.weight(1f)
+                                )
+                            }
+
+                            if (rowOptions.size < columns) {
+                                repeat(columns - rowOptions.size) {
+                                    Spacer(modifier = Modifier.weight(1f))
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
